@@ -96,7 +96,7 @@ export default function TalkToProjects() {
       });
     } catch (err) {
       console.error("ElevenLabs error:", err);
-      setErrorMessage(err.message || "Voice generation failed. Please check your ElevenLabs API key.");
+      setErrorMessage(err.message || "Voice generation failed. Please try again.");
     }
   };
 
