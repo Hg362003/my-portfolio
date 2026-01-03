@@ -13,9 +13,9 @@ export async function POST(request: NextRequest) {
     }
 
     if (!process.env.ELEVENLABS_API_KEY) {
-      console.error("ELEVENLABS_API_KEY is not set in environment variables");
+      console.error("❌ ELEVENLABS_API_KEY missing in production environment");
       return NextResponse.json(
-        { error: "ElevenLabs API key is not configured. Please restart the dev server after adding the key to .env.local" },
+        { error: "Voice service is temporarily unavailable" },
         { status: 500 }
       );
     }
