@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const PROJECTS = {
   projecto:
@@ -17,7 +17,7 @@ const PROJECTS = {
     "Resumo is an AI-powered resume evaluation tool that analyzes resumes for structure, relevance, formatting, and keyword matching. It provides improvement suggestions using AI-based insights.",
 };
 
-function detectProject(question) {
+function detectProject(question: string) {
   const q = question.toLowerCase();
   if (q.includes("projecto")) return PROJECTS.projecto;
   if (q.includes("onlyicanwatch")) return PROJECTS.onlyicanwatch;
@@ -27,7 +27,7 @@ function detectProject(question) {
   return null;
 }
 
-export async function POST(req) {
+export async function POST(req: NextRequest) {
   try {
     const { question } = await req.json();
     const answer = detectProject(question);

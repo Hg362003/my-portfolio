@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Large files (consider optimizing before committing)
+# public/design.png - 53MB (consider compressing)
+# public/bg.png - deleted (was 94MB)

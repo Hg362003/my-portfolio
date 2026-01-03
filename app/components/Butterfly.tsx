@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 export default function Butterfly() {
   const mountRef = useRef<HTMLDivElement | null>(null);
@@ -66,7 +66,9 @@ export default function Butterfly() {
         // ✅ POSITION (RIGHT SIDE, EMPTY SPACE)
         butterfly.position.set(2.5, 0.2, 0);
 
-        scene.add(butterfly);
+        if (scene) {
+          scene.add(butterfly);
+        }
 
         // Animation
         mixer = new THREE.AnimationMixer(butterfly);
