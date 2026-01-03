@@ -3,7 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const fetch = require("node-fetch");
+// Node 18+ has built-in fetch, no need for node-fetch
 
 const app = express();
 app.use(cors());
@@ -151,6 +151,65 @@ Explain this clearly in 3–4 sentences.
     console.error("OpenRouter error:", error);
     return res.status(500).json({
       error: "AI service is temporarily unavailable. Please try again.",
+    });
+  }
+});
+
+app.post("/voice", async (req, res) => {
+  try {
+    const { text } = req.body;
+
+    if (!text) {
+      return res.status(400).json({ error: "Text is required" });
+    }
+
+    if (!process.env.ELEVENLABS_API_KEY) {
+      console.error("❌ ELEVENLABS_API_KEY missing");
+      return res.status(500).json({
+        error: "Voice service is temporarily unavailable",
+      });
+    }
+
+    const voiceId = "21m00Tcm4TlvDq8ikWAM"; // Rachel (stable & cheap)
+
+    const response = await fetch(
+      `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`,
+      {
+        method: "POST",
+        headers: {
+          "xi-api-key": process.env.ELEVENLABS_API_KEY,
+          "Content-Type": "application/json",
+          Accept: "audio/mpeg",
+        },
+        body: JSON.stringify({
+          text,
+          model_id: "eleven_monolingual_v1",
+          voice_settings: {
+            stability: 0.4,
+            similarity_boost: 0.7,
+          },
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const err = await response.text();
+      console.error("❌ ElevenLabs error:", err);
+      return res.status(500).json({
+        error: "Voice service is temporarily unavailable",
+      });
+    }
+
+    const audioBuffer = Buffer.from(await response.arrayBuffer());
+
+    res.setHeader("Content-Type", "audio/mpeg");
+    res.setHeader("Content-Length", audioBuffer.length);
+
+    res.send(audioBuffer);
+  } catch (error) {
+    console.error("❌ Voice API crash:", error);
+    res.status(500).json({
+      error: "Voice service is temporarily unavailable",
     });
   }
 });
