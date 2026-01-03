@@ -1,0 +1,20 @@
+.intro-section {
+  position: relative;
+}
+
+.butterfly-layer {
+  position: absolute;
+  right: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 360px;
+  height: 360px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .butterfly-layer {
+    display: none;
+  }
+}

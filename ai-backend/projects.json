@@ -1,0 +1,71 @@
+[
+  {
+    "name": "Projecto",
+    "description": "A comprehensive networking and career development platform connecting students, alumni, and professionals",
+    "problemSolved": "Finding the right teammates and networking opportunities",
+    "features": [
+      "Real-time project proposals",
+      "Mentorship connections",
+      "Interactive live feed",
+      "Spotlight sections"
+    ],
+    "impact": "Faster onboarding and better collaboration for students and professionals",
+    "stack": ["React.js", "Node.js", "MongoDB", "Mailtrap"]
+  },
+  {
+    "name": "OnlyICanWatch",
+    "description": "Secure PDF viewer preventing unauthorized access",
+    "problemSolved": "Preventing download, print, and copy access to sensitive documents",
+    "features": [
+      "Protected routes",
+      "Safe in-browser rendering",
+      "No download capability",
+      "Secure viewing"
+    ],
+    "impact": "Improved document security and controlled access",
+    "stack": ["Node.js", "Express.js", "PDF.js"]
+  },
+  {
+    "name": "Authify",
+    "description": "Secure authentication and user access system",
+    "problemSolved": "Insecure user access and authentication vulnerabilities",
+    "features": [
+      "JWT authentication",
+      "OTP-based email verification",
+      "Password hashing with Bcrypt",
+      "Role-based access control"
+    ],
+    "impact": "Improved security and trust for user authentication",
+    "stack": ["Node.js", "Express.js", "MongoDB", "Bcrypt.js", "JWT", "Nodemailer"]
+  },
+  {
+    "name": "RateSpace",
+    "description": "User review and rating platform",
+    "problemSolved": "Need for authentic user reviews and ratings",
+    "features": [
+      "Authenticated user reviews",
+      "Real-time updates",
+      "Spam control",
+      "Validation system"
+    ],
+    "impact": "Trustworthy reviews and better user experience",
+    "stack": ["React.js", "Node.js", "Express.js", "MongoDB", "JWT"]
+  },
+  {
+    "name": "Resumo",
+    "description": "AI-powered resume evaluation tool",
+    "problemSolved": "Lack of objective resume feedback and improvement suggestions",
+    "features": [
+      "AI-driven keyword analysis",
+      "Score generation",
+      "Improvement suggestions",
+      "GPT-based insights"
+    ],
+    "impact": "Better resume quality and higher job application success rates",
+    "stack": ["Node.js", "Express.js", "OpenAI GPT API"]
+  }
+]
+
+
+
+

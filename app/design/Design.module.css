@@ -1,0 +1,71 @@
+.wrapper {
+  perspective: 1400px;
+  overflow-x: hidden;
+}
+
+/* GENERIC SECTION */
+.section {
+  position: relative;
+  width: 100%;
+  padding: 8vh 0;          /* breathing room */
+  display: flex;
+  justify-content: center;
+}
+
+/* SECTION IMAGE */
+.sectionImg {
+  width: 100%;
+  max-width: 1400px;       /* prevents ultra-wide stretch */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* HERO – CAR */
+.carWrap {
+  position: absolute;
+  width: 75%;
+  left: 12.5%;
+  bottom: 10%;
+  pointer-events: none;
+}
+
+.car {
+  width: 100%;
+  transform: translateZ(300px);
+}
+
+.carShadow {
+  position: absolute;
+  bottom: -28px;
+  left: 15%;
+  width: 70%;
+  height: 35px;
+  background: rgba(0, 0, 0, 0.45);
+  filter: blur(25px);
+}
+
+/* COLLAGE */
+.collage {
+  height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collageImg {
+  width: 90%;
+  max-width: 1200px;
+  transform: translateZ(260px);
+}
+
+/* FLOAT */
+.float {
+  will-change: transform;
+}
+
+
+
+
+

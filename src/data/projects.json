@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Projecto: A Comprehensive Networking and Career Development Platform",
+    "url": "https://github.com/Hg362003/ProjectO-Main",
+    "summary": "Full-stack networking platform connecting students, alumni, and professionals with real-time project proposals, mentorship, spotlight sections, and interactive live feed.",
+    "stack": ["React.js", "Node.js", "MongoDB", "Mailtrap"]
+  },
+  {
+    "title": "OnlyICanWatch – Secure PDF Viewer",
+    "url": "https://github.com/Hg362003/onlyicanwatch",
+    "summary": "Secure PDF viewer preventing download, print, and copy access using protected routes and safe in-browser rendering.",
+    "stack": ["Node.js", "Express.js", "PDF.js"]
+  },
+  {
+    "title": "Authify – Secure Authentication & User Access System",
+    "url": "https://github.com/Hg362003/Authify",
+    "summary": "Full authentication system with signup/login, JWT, password hashing, OTP-based email verification, and secure role-based access.",
+    "stack": ["Node.js", "Express.js", "MongoDB", "Bcrypt.js", "JWT", "Nodemailer"]
+  },
+  {
+    "title": "RateSpace – User Review & Rating Platform",
+    "url": "https://github.com/Hg362003/RateSpace",
+    "summary": "Platform where authenticated users rate and review items with real-time updates, spam control, and validation.",
+    "stack": ["React.js", "Node.js", "Express.js", "MongoDB", "JWT"]
+  },
+  {
+    "title": "Resumo – AI-Powered Resume Evaluation Tool",
+    "url": null,
+    "summary": "AI-driven resume evaluator that analyzes keywords, generates scores, and gives improvement suggestions using GPT-based insights.",
+    "stack": ["Node.js", "Express.js", "OpenAI GPT API"]
+  }
+]

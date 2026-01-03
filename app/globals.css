@@ -1,26 +1,390 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Remove global gaps */
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+img {
+  vertical-align: top;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* small global tweaks */
+html, body, #__next {
+  height: 100%;
+}
+
+/* ensure our canvas sits behind content */
+.canvas-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* content sits above canvas */
+.app-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* Hero section above canvas */
+.hero {
+  position: relative;
+  z-index: 2;
+}
+
+/* Hero CTA button centering */
+.hero-cta {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Intro section with butterfly */
+.intro-left {
+  /* Left column content */
+}
+
+.intro-right {
+  position: relative;
+  width: 100%;
+  height: 400px; /* controls butterfly size */
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#butterfly-container {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 300px;
+  pointer-events: none;
+}
+
+/* Apply Urbanist font to nearly everything */
+html, body, p, span, li, a, button, input, textarea,
+h2, h3, h4, h5, h6,
+section p, section span, section a,
+.text-normal, .description, .small-text,
+.text-gray-200, .text-gray-300, .text-gray-400 {
+  font-family: "Urbanist", sans-serif !important;
+  font-optical-sizing: auto;
+}
+
+/* Explicitly apply Urbanist to all bold text EXCEPT your hero name */
+strong, b {
+  font-family: "Urbanist", sans-serif !important;
+}
+
+/* EXCEPTION: Your name should NOT use Urbanist */
+#hero-name {
+  font-family: inherit !important;
+}
+
+/* ------------------------------------------ */
+/*  Clean Uiverse-style Download Button       */
+/*  Matches dark portfolio theme, no gradient */
+/* ------------------------------------------ */
+
+.buttonDownload {
+  display: inline-block;
+  position: relative;
+  padding: 12px 30px;
+  background: transparent;           /* No gradient */
+  border: 1.5px solid rgba(255,255,255,0.25);
+  border-radius: 8px;
+  color: white;
+  font-family: "Urbanist", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-indent: 16px;
+}
+
+/* Hover effect: soft Saturn glow */
+.buttonDownload:hover {
+  border-color: rgba(255,214,174,0.8);   /* warm but subtle */
+  box-shadow: 0 0 14px rgba(255,214,174,0.5);
+  color: rgba(255,214,174,1);
+}
+
+.buttonDownload:before,
+.buttonDownload:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 16px;
+  top: 53%;
+}
+
+/* Horizontal line of arrow */
+.buttonDownload:before {
+  width: 10px;
+  height: 2px;
+  border-style: solid;
+  border-width: 0 2px 2px;
+  border-color: white;
+}
+
+/* Animated arrow head */
+.buttonDownload:after {
+  width: 0;
+  height: 0;
+  margin-left: 3px;
+  margin-top: -7px;
+  border-style: solid;
+  border-width: 4px 4px 0 4px;
+  border-color: transparent;
+  border-top-color: white;      /* white arrow (clean, minimal) */
+  animation: downloadArrow 1s linear infinite;
+  animation-play-state: paused;
+}
+
+/* Hover animation resumes */
+.buttonDownload:hover:before {
+  border-color: rgba(255,214,174,0.8);
+}
+
+.buttonDownload:hover:after {
+  border-top-color: rgba(255,214,174,0.8);
+  animation-play-state: running;
+}
+
+/* Arrow animation */
+@keyframes downloadArrow {
+  0% { margin-top: -7px; opacity: 1; }
+  0.001% { margin-top: -14px; opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { margin-top: 0; opacity: 0.4; }
+}
+
+/* ------------------------------------------ */
+/*  Flower Button                              */
+/* ------------------------------------------ */
+
+.btn {
+  height: 4em;
+  width: 12em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.wrapper {
+  height: 2em;
+  width: 8em;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-size: 17px;
+  z-index: 1;
+  color: #000;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.7);
+  transition: all 0.5s ease;
+}
+
+.flower {
+  display: grid;
+  grid-template-columns: 1em 1em;
+  position: absolute;
+  transition: grid-template-columns 0.8s ease;
+}
+
+.flower1 { top: -12px; left: -13px; transform: rotate(5deg); }
+.flower2 { bottom: -5px; left: 8px; transform: rotate(35deg); }
+.flower3 { bottom: -15px; transform: rotate(0deg); }
+.flower4 { top: -14px; transform: rotate(15deg); }
+.flower5 { right: 11px; top: -3px; transform: rotate(25deg); }
+.flower6 { right: -15px; bottom: -15px; transform: rotate(30deg); }
+
+.petal {
+  height: 1em;
+  width: 1em;
+  border-radius: 40% 70% / 7% 90%;
+  background: linear-gradient(#07a6d7, #93e0ee);
+  border: 0.5px solid #96d1ec;
+  transition: all 0.8s ease;
+}
+
+.two { transform: rotate(90deg); }
+.three { transform: rotate(270deg); }
+.four { transform: rotate(180deg); }
+
+.btn:hover .petal {
+  background: linear-gradient(#0761d7, #93bdee);
+}
+
+.btn:hover .flower {
+  grid-template-columns: 1.5em 1.5em;
+}
+
+.btn:hover .petal {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.btn:hover .text {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Rotations */
+.btn:hover .flower1 { animation: flower1 15s linear infinite; }
+.btn:hover .flower2 { animation: flower2 13s linear infinite; }
+.btn:hover .flower3 { animation: flower3 16s linear infinite; }
+.btn:hover .flower4 { animation: flower4 17s linear infinite; }
+.btn:hover .flower5 { animation: flower5 20s linear infinite; }
+.btn:hover .flower6 { animation: flower6 15s linear infinite; }
+
+@keyframes flower1 { to { transform: rotate(365deg); } }
+@keyframes flower2 { to { transform: rotate(-325deg); } }
+@keyframes flower3 { to { transform: rotate(360deg); } }
+@keyframes flower4 { to { transform: rotate(375deg); } }
+@keyframes flower5 { to { transform: rotate(-335deg); } }
+@keyframes flower6 { to { transform: rotate(390deg); } }
+
+/* Talk to Projects Animations */
+.glow {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+  50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
+}
+
+.btn-glow {
+  background: white;
+  color: black;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-glow:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.btn-glow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.05);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-in;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Explore My Art Section ===== */
+
+.art-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* full section */
+
+  background-image: url("/art-bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; /* ✅ fills entire section */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dark overlay */
+.art-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+/* Content container */
+.art-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+/* Heading */
+.art-heading {
+  font-family: "Urbanist", sans-serif;
+  font-weight: 600; /* semibold */
+  font-size: 3rem;
+  color: #ffffff;
+  margin-bottom: 28px;
+  letter-spacing: 1px;
+}
+
+/* Button */
+.art-box {
+  font-family: "Birthstone", cursive;
+  font-size: 2rem;
+  color: #ffffff;
+
+  padding: 16px 44px;
+  border: 2px solid #ffffff;
+
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Hover polish */
+.art-box:hover {
+  border-width: 3px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
